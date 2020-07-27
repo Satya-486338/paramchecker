@@ -1,7 +1,21 @@
 
-bool vitalsAreOk(float bpm, float spo2, float respRate) {
+bool vitalsBpmAreOk(float bpm) {
   bool boVitalArea = true;
-  if((bpm < 70 || bpm > 150) || (spo2 < 80) || (respRate < 30 || respRate > 60)) {
+  if(bpm < 70 || bpm > 150)  {
+    boVitalArea = false;
+  }
+  return boVitalArea;
+}
+bool vitalsSpo2AreOk(float spo2) {
+  bool boVitalArea = true;
+  if(spo2 < 80) {
+    boVitalArea = false;
+  }
+  return boVitalArea;
+}
+bool vitalsRespRateAreOk(float respRate) {
+  bool boVitalArea = true;
+  if(respRate < 30 || respRate > 60) {
     boVitalArea = false;
   }
   return boVitalArea;
