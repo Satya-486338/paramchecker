@@ -9,7 +9,7 @@
 
 bool checkVitalOk(float val,int minilimit,int maxlimit){
   bool boVital = true;
-  if ((boVital < minilimit) || (boVital > maxlimit) ){
+  if ((val < minilimit) || (val > maxlimit) ){
     boVital = false;
   }
   return (boVital);
