@@ -18,7 +18,7 @@ bool ISRespRateAreOk(float respRate) {
   if(respRate < 30 || respRate > 60) {
     boRespRate = false;
   }
-  return boVitalArea;
+  return boRespRate;
 }
 bool vitalsRespAreOk(float bpm,float spo2,float respRate) {
   bool boBpmRate,boSpo2Rate,boRespRate;
