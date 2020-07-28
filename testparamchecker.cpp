@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
  
 TEST(VitalsTest, BPM) { 
-    ASSERT_EQ(true, vitalsRespAreOk(100,40,20));
+    ASSERT_EQ(true, vitalsRespAreOk(100,100,50));
 }
  
 TEST(VitalsTest, SPO2) {
