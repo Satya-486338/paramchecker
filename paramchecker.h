@@ -1,5 +1,4 @@
-bool IsboBpmRateAreOk(float bpm);
-bool IsSpo2RateAreOk(float spo2);
-bool ISRespRateAreOk(float respRate);
+
+bool checkVitalOk(float val,int minilimit,int maxlimit);
 bool vitalsRespAreOk(float bpm,float spo2,float respRate);
 
