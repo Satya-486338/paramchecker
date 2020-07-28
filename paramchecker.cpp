@@ -1,22 +1,29 @@
 
-bool vitalsBpmRateAreOk(float bpm) {
-  bool boVitalArea = true;
+bool IsboBpmRateAreOk(float bpm) {
+  bool boBpmRate = true;
   if(bpm < 70 || bpm > 150)  {
-    boVitalArea = false;
+    boBpmRate = false;
   }
-  return boVitalArea;
+  return boBpmRate;
 }
-bool vitalsSpo2RateAreOk(float spo2) {
-  bool boVitalArea = true;
+bool IsSpo2RateAreOk(float spo2) {
+  bool boSpo2Rate = true;
   if(spo2 < 80) {
-    boVitalArea = false;
+    boSpo2Rate = false;
+  }
+  return boSpo2Rate;
+}
+bool ISRespRateAreOk(float respRate) {
+  bool boRespRate = true;
+  if(respRate < 30 || respRate > 60) {
+    boRespRate = false;
   }
   return boVitalArea;
 }
-bool vitalsRespRateAreOk(float respRate) {
-  bool boVitalArea = true;
-  if(respRate < 30 || respRate > 60) {
-    boVitalArea = false;
-  }
-  return boVitalArea;
+bool vitalsRespAreOk(float bpm,float spo2,float respRate) {
+  bool boBpmRate,boSpo2Rate,boRespRate;
+  boBpmRate = IsboBpmRateAreOk(bpm);
+  boSpo2Rate =IsSpo2RateAreOk(spo2);
+  boRespRate = ISRespRateAreOk(respRate)
+  return (boBpmRate && boSpo2Rate&& boRespRate);
 }
