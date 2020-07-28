@@ -1,29 +1,23 @@
+#define BPM_HIGH_LIMIT (150)
+#define BPM_LOW_LIMIT (80)
+#define SPO2_HIGH_LIMIT (0xFFFF)
+#define SPO2_LOW_LIMIT (80)
+#define RESP_HIGH_LIMIT (60)
+#define RESP_LOW_LIMIT (30)
 
-bool IsboBpmRateAreOk(float bpm) {
-  bool boBpmRate = true;
-  if(bpm < 70 || bpm > 150)  {
-    boBpmRate = false;
+
+
+bool checkVitalOk(float val,int minilimit,int maxlimit){
+  bool boVital = true;
+  if ((boVital < minilimit) || (boVital > maxlimit) ){
+    boVital = false;
   }
-  return boBpmRate;
-}
-bool IsSpo2RateAreOk(float spo2) {
-  bool boSpo2Rate = true;
-  if(spo2 < 80) {
-    boSpo2Rate = false;
-  }
-  return boSpo2Rate;
-}
-bool ISRespRateAreOk(float respRate) {
-  bool boRespRate = true;
-  if(respRate < 30 || respRate > 60) {
-    boRespRate = false;
-  }
-  return boRespRate;
+  return (boVital);
+    
 }
 bool vitalsRespAreOk(float bpm,float spo2,float respRate) {
-  bool boBpmRate,boSpo2Rate,boRespRate;
-  boBpmRate = IsboBpmRateAreOk(bpm);
-  boSpo2Rate =IsSpo2RateAreOk(spo2);
-  boRespRate = ISRespRateAreOk(respRate);
-  return (boBpmRate && boSpo2Rate&& boRespRate);
+
+  return (checkVitalOk(bpm,BPM_LOW_LIMIT,BPM_HIGH_LIMIT)
+          && checkVitalOk(spo2,SPO2_LOW_LIMIT,SPO2_HIGH_LIMIT)
+          && checkVitalOk(respRate,RESP_LOW_LIMIT,RESP_HIGH_LIMIT));
 }
