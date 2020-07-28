@@ -24,6 +24,6 @@ bool vitalsRespAreOk(float bpm,float spo2,float respRate) {
   bool boBpmRate,boSpo2Rate,boRespRate;
   boBpmRate = IsboBpmRateAreOk(bpm);
   boSpo2Rate =IsSpo2RateAreOk(spo2);
-  boRespRate = ISRespRateAreOk(respRate)
+  boRespRate = ISRespRateAreOk(respRate);
   return (boBpmRate && boSpo2Rate&& boRespRate);
 }
