@@ -1,23 +1,19 @@
-#define BPM_HIGH_LIMIT (150)
-#define BPM_LOW_LIMIT (80)
-#define SPO2_HIGH_LIMIT (0xFFFF)
-#define SPO2_LOW_LIMIT (80)
-#define RESP_HIGH_LIMIT (60)
-#define RESP_LOW_LIMIT (30)
+#include "paramchecker.h"
+#include <vector>
+#include <iostream>
 
+IVitalCheck* vitalCheckers[] = {
+  [bpm] = new VitalRangeCheck(70, 150),
+  [spo2] = new VitalRangeCheck(80, 100),
+  [respRate] = new VitalRangeCheck(30, 60),
+  [avgECG] = new VitalValueCheck(0),
+};
 
-
-bool checkVitalOk(float val,int minilimit,int maxlimit){
-  bool boVital = true;
-  if ((val < minilimit) || (val > maxlimit) ){
-    boVital = false;
+std::vector<bool> vitalsAreOk(const std::vector<Measurement>& measurements) {
+  std::vector<bool> results;
+  for(auto t = measurements.begin(); t != measurements.end(); t++) {
+    bool vitalResult = vitalCheckers[t->id]->measurementIsOk(t->measured_value);
+    std::cout << "Vital-check result is " << vitalResult << std::endl;
   }
-  return (boVital);
-    
-}
-bool vitalsRespAreOk(float bpm,float spo2,float respRate) {
-
-  return (checkVitalOk(bpm,BPM_LOW_LIMIT,BPM_HIGH_LIMIT)
-          && checkVitalOk(spo2,SPO2_LOW_LIMIT,SPO2_HIGH_LIMIT)
-          && checkVitalOk(respRate,RESP_LOW_LIMIT,RESP_HIGH_LIMIT));
+  return results;
 }
